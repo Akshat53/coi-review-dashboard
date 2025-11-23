@@ -1,267 +1,181 @@
 # COI Review Dashboard
 
-A comprehensive Certificate of Insurance (COI) Review Dashboard built with React, TypeScript, and Tailwind CSS. This application allows users to efficiently manage, track, and review certificates of insurance for properties and tenants.
+A modern dashboard for managing Certificate of Insurance (COI) records for properties and tenants. Built with React, TypeScript, and Tailwind CSS.
 
-![COI Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3-blue) ![Vite](https://img.shields.io/badge/Vite-7-blue)
+## Overview
 
-## Features
+This application helps property managers track and manage insurance certificates across multiple properties. It includes features like filtering, sorting, bulk operations, and reminders for expiring certificates.
 
-### Core Functionality
-- ✅ **Dashboard Overview**: View all COIs with summary statistics (Total Processed, Accepted, Rejected, Expiring in 30 days)
-- ✅ **COI Management**: Create, read, update, and delete COI records
-- ✅ **Advanced Filtering**: Filter by properties, status, expiry date range, and search queries
-- ✅ **Pagination**: Navigate through large datasets with customizable rows per page (10, 25, 50, 100)
-- ✅ **Sorting**: Sort by property, tenant name, expiry date, and status
-- ✅ **Status Management**: Update COI status with dropdown (Active, Expired, Rejected, Expiring Soon, Not Processed)
-- ✅ **Bulk Operations**: Select multiple COIs and send bulk reminders
-- ✅ **Reminder System**: Track and send reminders for expiring COIs
+## Key Features
 
-### Bonus Features Implemented
-✅ **TypeScript**: Full type safety throughout the application
-✅ **Dark Mode**: Toggle between light and dark themes with localStorage persistence
-✅ **Search Debounce**: Optimized search with 300ms debounce for better performance
-✅ **Column Sorting**: Sort by any column in ascending/descending order
-✅ **CSV Export**: Export all COI data to CSV format
-✅ **Local Storage**: Persist data across browser sessions
-✅ **Responsive Design**: Mobile-friendly layout matching the Figma design
-✅ **Form Validation**: Email validation and required field checks
-✅ **Context API**: Clean state management with React Context
+**Dashboard & Statistics**
+- Quick overview with stats cards showing total processed, accepted, rejected, and expiring certificates
+- Real-time updates as you manage records
+
+**COI Management**
+- Add, edit, and delete certificate records
+- Update status directly from the table
+- Track reminder history for each certificate
+
+**Search & Filter**
+- Search across tenant names, properties, and units
+- Filter by multiple properties and statuses at once
+- Filter by expiry date ranges (30/60/90 days)
+
+**Data Operations**
+- Bulk reminder system for selected certificates
+- Export all data to CSV
+- Sort by any column
+
+**User Experience**
+- Dark mode support
+- Responsive design that works on all screen sizes
+- Data persists in browser localStorage
+- Fixed layout with scrollable table content
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| React 18 | Frontend framework |
-| TypeScript | Type safety |
-| Vite | Build tool & dev server |
-| Tailwind CSS v3 | Styling |
-| React Router v6 | Routing |
-| Lucide React | Icons |
-| date-fns | Date manipulation |
-| Context API | State management |
-
-## Project Structure
-
-```
-coi-review-dashboard/
-├── src/
-│   ├── components/
-│   │   ├── Dashboard/        # Dashboard-specific components
-│   │   ├── COI/              # COI table and form components
-│   │   ├── Layout/           # Sidebar and Header
-│   │   └── Shared/           # Reusable components
-│   ├── context/              # React Context for state management
-│   ├── hooks/                # Custom hooks
-│   ├── pages/                # Page components
-│   ├── types/                # TypeScript type definitions
-│   ├── utils/                # Utility functions
-│   └── data/                 # Mock data
-└── ...config files
-```
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS v3
+- React Router v6
+- date-fns
+- Lucide React (icons)
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18+ and npm
-- Modern web browser
-
 ### Installation
 
-1. **Clone the repository**:
 ```bash
-git clone <repository-url>
+# Clone the repository
+git clone https://github.com/Akshat53/coi-review-dashboard.git
 cd coi-review-dashboard
-```
 
-2. **Install dependencies**:
-```bash
+# Install dependencies
 npm install
-```
 
-3. **Start development server**:
-```bash
+# Start development server
 npm run dev
 ```
 
-4. **Open browser**: Navigate to `http://localhost:5173`
+The app will be available at `http://localhost:5173`
 
 ### Build for Production
 
 ```bash
 npm run build
-```
-
-Build output will be in the `dist/` directory.
-
-### Preview Production Build
-
-```bash
 npm run preview
 ```
 
-## Usage Guide
+## Project Structure
 
-### Dashboard Overview
+```
+src/
+├── components/
+│   ├── COI/              # COI table and form components
+│   ├── Dashboard/        # Dashboard components (stats, filters, pagination)
+│   ├── Layout/           # Sidebar and header
+│   └── Shared/           # Reusable components
+├── context/              # React Context providers
+├── hooks/                # Custom React hooks
+├── pages/                # Page components
+├── types/                # TypeScript interfaces
+├── utils/                # Helper functions
+└── data/                 # Mock data
+```
 
-The dashboard displays four key statistics cards:
-- **Total COI Processed**: All COIs in the system
-- **Accepted**: COIs with "Active" status
-- **Rejected**: COIs with "Rejected" status
-- **Expiring in 30 days**: COIs expiring within 30 days
+## How to Use
 
-### Adding a New COI
+### Adding a Certificate
 
-1. Click "+ ADD COI" button
-2. Fill required fields:
-   - Property name
-   - Tenant name
-   - Tenant email (with validation)
-   - Unit number
-   - COI name
-   - Expiry date
-   - Status
-3. Click "Add COI"
+1. Click the "+ ADD COI" button
+2. Fill in the property details, tenant information, and expiry date
+3. Select a status and save
 
-### Editing a COI
+### Editing
 
-- Click edit icon next to expiry date
-- Or use three-dot menu → "Edit"
-- Update fields and save
+- Click the edit icon next to the expiry date, or
+- Use the three-dot menu and select "Edit"
 
-### Filtering and Searching
+### Filtering
 
-- **Properties**: Multi-select filter
-- **Status**: Multi-select filter
-- **Expiry Range**: 30/60/90 days
-- **Search**: Real-time search (debounced)
+Use the dropdowns at the top to filter by:
+- Properties (multi-select)
+- Status (multi-select)
+- Expiry date range
 
-### Bulk Operations
+The search bar filters across tenant names, properties, and units in real-time.
 
-1. Select COIs with checkboxes
+### Bulk Reminders
+
+1. Check the boxes next to certificates you want to remind
 2. Click "Send Bulk Reminder"
 3. Reminder status updates automatically
 
-### Export to CSV
+### Exporting Data
 
-Click download icon in filter bar to export all data.
+Click the download icon in the filter bar to export all COI data to CSV.
 
-### Dark Mode
+## Data Persistence
 
-Toggle moon/sun icon in header.
-
-## Data Management
-
-### LocalStorage
-
-All data persists in browser localStorage:
+All data is stored in browser localStorage, so it persists between sessions. This includes:
 - COI records
-- Theme preference
-- Filter settings
+- Dark mode preference
+- Filter selections
 
-To reset: Clear browser localStorage or delete `coi-dashboard-data` key.
+To reset everything, clear your browser's localStorage for this site.
 
-### Mock Data
+## Status Colors
 
-20 sample COI records are included with various statuses and expiry dates.
-
-## Color Scheme
-
-### Status Colors
-| Status | Color |
-|--------|-------|
-| Active | Blue |
-| Expired | Red |
-| Rejected | Red |
-| Expiring Soon | Orange |
-| Not Processed | Gray |
-
-### Reminder Status
-| Status | Color |
-|--------|-------|
-| Not Sent | Gray |
-| Sent (30d/15d/7d) | Green |
-| N/A | Gray |
-
-## Performance Optimizations
-
-- ⚡ Debounced search (300ms)
-- ⚡ Memoized filtering and sorting
-- ⚡ Pagination for large datasets
-- ⚡ Efficient re-renders with React.memo
-- ⚡ Lazy loading of components
+- **Active**: Blue
+- **Expired**: Red
+- **Rejected**: Red
+- **Expiring Soon**: Orange
+- **Not Processed**: Gray
 
 ## Browser Support
 
-- ✅ Chrome/Edge (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-
-## Code Quality
-
-- TypeScript for type safety
-- ESLint configuration
-- Component-based architecture
-- Clean separation of concerns
-- Reusable hooks and utilities
-
-## Assignment Deliverables
-
-| Requirement | Status |
-|------------|--------|
-| Code structure | ✅ Clean, modular components |
-| UI/UX | ✅ Matches Figma design, responsive |
-| State management | ✅ Context API implementation |
-| Data handling | ✅ Full CRUD operations |
-| Routing | ✅ React Router setup |
-| Testing ready | ✅ Jest/RTL compatible structure |
-| Dark mode | ✅ Implemented |
-| TypeScript | ✅ Full coverage |
-| Advanced filtering | ✅ Multi-filter support |
-
-## Future Enhancements
-
-- 🔄 Backend API integration
-- 📎 File upload for COI documents
-- 📧 Email notification system
-- 📊 Advanced analytics dashboard
-- 🌍 Multi-language support
-- 🔐 Role-based access control
-- 🔔 Automated expiry notifications
-- 📱 Mobile app (React Native)
+Tested on:
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
 
 ## Development
 
-### Scripts
+### Available Scripts
 
 ```bash
-npm run dev      # Start dev server
-npm run build    # Production build
-npm run preview  # Preview build
-npm run lint     # Run ESLint
+npm run dev       # Start dev server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run lint      # Run ESLint
 ```
 
-### Adding New Features
+### Code Organization
 
-1. Create components in appropriate directory
-2. Add types in `types/coi.types.ts`
-3. Use Context for state management
-4. Follow existing patterns
+The codebase follows a component-based architecture with:
+- Separation of concerns (UI, logic, state)
+- TypeScript for type safety
+- Custom hooks for reusable logic
+- Context API for global state
 
-## Troubleshooting
+## Performance
 
-### Build Errors
-- Ensure Node.js 18+
-- Clear `node_modules` and reinstall
-- Check for TypeScript errors
+- Search is debounced (300ms) to reduce re-renders
+- Large lists are paginated
+- Operations are memoized where beneficial
+- Components use React.memo where appropriate
 
-### Dark Mode Not Working
-- Check localStorage
-- Verify ThemeContext is wrapped properly
+## Future Ideas
 
-### Data Not Persisting
-- Check browser localStorage settings
-- Verify localStorage quota
+Some features that could be added:
+- Backend API integration
+- File upload for COI documents
+- Email notification system
+- Advanced analytics
+- Role-based access control
+- Automated expiry notifications
 
 ## License
 
@@ -269,9 +183,4 @@ MIT
 
 ## Author
 
-Developed as an assignment demonstrating:
-- Modern React development
-- TypeScript best practices
-- State management patterns
-- UI/UX implementation
-- Code organization
+Built to demonstrate modern React development practices, including TypeScript, state management, and UI/UX implementation.

@@ -29,13 +29,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewCOI, isOpen, onClose, onToggle }
       )}
 
       <div className={`
-        fixed lg:relative inset-y-0 left-0 z-50
+        fixed lg:relative inset-y-0 left-0 z-[60]
         bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700
         flex flex-col h-screen shrink-0
-        transform transition-all duration-300 ease-in-out overflow-hidden
-        ${isOpen ? 'w-60 translate-x-0' : 'w-0 lg:w-16 -translate-x-full lg:translate-x-0'}
+        transform transition-all duration-300 ease-in-out
+        ${isOpen ? 'w-60 translate-x-0' : 'w-0 lg:w-16 -translate-x-full lg:translate-x-0 overflow-hidden'}
       `}>
-        <div className={`min-w-[240px] w-60 flex flex-col h-full ${!isOpen && 'hidden lg:hidden'}`}>
+        <div className={`w-60 flex flex-col h-full ${isOpen ? 'flex' : 'hidden lg:hidden'}`}>
           <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">

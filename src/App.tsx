@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { COIProvider } from './context/COIContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -10,8 +10,23 @@ import COIForm from './components/COI/COIForm';
 
 const AppContent: React.FC = () => {
   const [showNewCOI, setShowNewCOI] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true); 
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    return window.innerWidth >= 1024;
+  });
   const { selectedCOIs, sendReminders, addCOI } = useCOI();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleBulkReminder = () => {
     if (selectedCOIs.length > 0) {

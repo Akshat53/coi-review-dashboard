@@ -1,19 +1,29 @@
 import React from 'react';
-import { ChevronDown, Sparkles, HelpCircle, Moon, Sun } from 'lucide-react';
+import { ChevronDown, Sparkles, HelpCircle, Moon, Sun, Menu } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
 interface HeaderProps {
   onSendBulkReminder: () => void;
   selectedCount: number;
+  onMenuClick: () => void;
+  sidebarOpen: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSendBulkReminder, selectedCount }) => {
+const Header: React.FC<HeaderProps> = ({ onSendBulkReminder, selectedCount, onMenuClick }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-3 sm:py-4 shrink-0">
       <div className="flex items-center justify-between gap-4">
-        <div className="min-w-0 flex-shrink-0">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors flex-shrink-0"
+          aria-label="Toggle sidebar"
+        >
+          <Menu size={24} />
+        </button>
+
+        <div className="min-w-0 flex-1">
           <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white truncate">
             COI Review Dashboard
           </h1>

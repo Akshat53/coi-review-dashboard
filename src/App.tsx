@@ -10,6 +10,7 @@ import COIForm from './components/COI/COIForm';
 
 const AppContent: React.FC = () => {
   const [showNewCOI, setShowNewCOI] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true); 
   const { selectedCOIs, sendReminders, addCOI } = useCOI();
 
   const handleBulkReminder = () => {
@@ -20,11 +21,18 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
-      <Sidebar onNewCOI={() => setShowNewCOI(true)} />
+      <Sidebar
+        onNewCOI={() => setShowNewCOI(true)}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
           onSendBulkReminder={handleBulkReminder}
           selectedCount={selectedCOIs.length}
+          onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+          sidebarOpen={sidebarOpen}
         />
         <Routes>
           <Route path="/" element={<DashboardPage />} />

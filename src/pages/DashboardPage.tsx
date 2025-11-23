@@ -131,9 +131,9 @@ const DashboardPage: React.FC = () => {
   }, [debouncedFilters]);
 
   return (
-    <div className="flex-1 overflow-auto bg-gray-100 dark:bg-gray-950">
-      <div className="p-6 max-w-[1800px]">
-        {/* Statistics Cards */}
+    <div className="flex-1 flex flex-col overflow-hidden bg-gray-100 dark:bg-gray-950">
+      <div className="flex-1 overflow-auto p-6">
+        <div className="max-w-[1800px]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <StatsCard
             title="Total COI Processed"
@@ -165,7 +165,6 @@ const DashboardPage: React.FC = () => {
           />
         </div>
 
-        {/* Main Content */}
         <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-[calc(100vh-280px)]">
           <FilterBar
             filters={filters}
@@ -199,9 +198,9 @@ const DashboardPage: React.FC = () => {
             onRowsPerPageChange={handleRowsPerPageChange}
           />
         </div>
+        </div>
       </div>
 
-      {/* COI Form Modal */}
       <COIForm
         isOpen={showCOIForm}
         onClose={() => {
